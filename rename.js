@@ -14,30 +14,78 @@
 // Rename
 
 
-// function greet(name) {
-//     console.log('Hai, ' + name);
+
+
+// function rename(str) {
+//   return str.toLowerCase();
 // }
 
-// greet('Bruce');
+// console.log(rename("Zakeer Hussain")); // "zakeer-hussain"
+// console.log(rename("BASHID")); // "bashied"
+// console.log(rename("BAshId Sk")); // "bashid-sk"
 
-// function greet(userName) {
-//     console.log('Hai, ' + userName);
+
+// nodejs read list of files from folder
+
+
+// const fs = require('fs');
+// const path = require('path');
+
+// function rename(str) {
+//   return str.toLowerCase().replace(/ /g, '-');
 // }
 
-// greet('Bob');
+// // Path to the 'public/js' folder
+// const srcFolderPath = path.join(__dirname, 'public', 'js');
+
+// // Read the 'public/js' folder
+// fs.readdir(srcFolderPath, (err, files) => {
+//   if (err) {
+//     console.error('Error reading directory:', err);
+//     return;
+//   }
+
+//   if (files.length > 0) {
+
+//     const renamedFiles = files.map(file => rename(file));
+
+//     console.log('Files in the public/js folder (renamed):');
+//     console.log(renamedFiles);
+//   } else {
+//     console.log('No files found in the public/js folder');
+//   }
+// });
 
 
-function rename(inputString) {
-    
-    if (typeof inputString === '') {
-        return inputString.toUpperCase(); 
-    } else {
-        return 'Invalid input, please provide a string';
-    }
+
+const fs = require('fs');
+const path = require('path');
+function rename(str) {
+  return str.toLowerCase().replace(/ /g, '-');
 }
 
+// Path to 'public/js' folder
+const srcFolderPath = path.join(__dirname, 'public', 'js');
 
-let input = prompt("Enter a string to rename (uppercase transformation):");
-let result = renameString(input);
-console.log(result);  // Output the renamed (uppercase) string
+function getRenamedFiles() {
+  return new Promise((resolve, reject) => {
+    // Read the 'public/js' folder
+    fs.readdir(srcFolderPath, (err, files) => {
+      if (err) {
+        reject('Error reading directory:', err);
+      } else {
+        // Use the map method 
+        const renamedFiles = files.map(file => rename(file));
+        resolve(renamedFiles);
+      }
+    });
+  });
+}
 
+getRenamedFiles()
+  .then(renamedFiles => {
+    console.log(renamedFiles);
+  })
+  .catch(error => {
+    console.error(error);
+  });
