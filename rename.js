@@ -58,34 +58,34 @@
 
 
 
-const fs = require('fs');
-const path = require('path');
-function rename(str) {
-  return str.toLowerCase().replace(/ /g, '-');
-}
+// const fs = require('fs');
+// const path = require('path');
+// function rename(str) {
+//   return str.toLowerCase().replace(/ /g, '-');
+// }
 
-// Path to 'public/js' folder
-const srcFolderPath = path.join(__dirname, 'public', 'js');
+// // Path to 'public/js' folder
+// const srcFolderPath = path.join(__dirname, 'public', 'js');
 
-function getRenamedFiles() {
-  return new Promise((resolve, reject) => {
-    // Read the 'public/js' folder
-    fs.readdir(srcFolderPath, (err, files) => {
-      if (err) {
-        reject('Error reading directory:', err);
-      } else {
-        // Use the map method 
-        const renamedFiles = files.map(file => rename(file));
-        resolve(renamedFiles);
-      }
-    });
-  });
-}
+// function getRenamedFiles() {
+//   return new Promise((resolve, reject) => {
+//     // Read the 'public/js' folder
+//     fs.readdir(srcFolderPath, (err, files) => {
+//       if (err) {
+//         reject('Error reading directory:', err);
+//       } else {
+//         // Use the map method 
+//         const renamedFiles = files.map(file => rename(file));
+//         resolve(renamedFiles);
+//       }
+//     });
+//   });
+// }
 
-getRenamedFiles()
-  .then(renamedFiles => {
-    console.log(renamedFiles);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+// getRenamedFiles()
+//   .then(renamedFiles => {
+//     console.log(renamedFiles);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
